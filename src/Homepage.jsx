@@ -7,15 +7,20 @@ function TodoList() {
   const [inputValue, setInputValue] = useState('');
   const [display, setDisplay] = useState(false);
   const [editValue, setEditValue] = useState(false);
+  const [editIndex, setEditIndex] = useState(null);
   const handleAdd = (e) => {
     setInputValue(e.target.value);
   };
 
   const handleClick = (e) => {
     e.preventDefault();
+    if(editValue==false){
       setArr([...arr, inputValue]);
       setInputValue('');
       setDisplay(true);
+    }else{
+      alert('press save button')
+    }
   };
 
   const remove = (index) => {
@@ -26,6 +31,7 @@ function TodoList() {
   
 
   const edit = (index) => {
+    setEditIndex(index);
     setEditValue(!editValue);
       const itemToEdit = arr[index];
       setInputValue(itemToEdit);
@@ -45,7 +51,7 @@ function TodoList() {
       <center><h1>Todo-list</h1>
       <form onSubmit={handleClick}>
         <input type='text' value={inputValue} onChange={handleAdd} required placeholder='Enter a todo item'/>
-        <button className='button1'>Add</button>
+        <button className='button1' style={{cursor:editValue? 'not-allowed':'pointer' }}>Add</button>
       </form>
       {
         display && 
@@ -53,7 +59,7 @@ function TodoList() {
           {arr.map((item, index) => (
             <li key={index}>
               {item}
-              <button className='button1'style={{ backgroundColor: "green" ,marginTop:"0.5em"}} onClick={() => edit(index)}>{editValue ? "Save" : "Edit"}</button>
+              <button className='button1'style={{ backgroundColor: "green" ,marginTop:"0.5em"}} onClick={() => edit(index)}>{editValue && index === editIndex ? "Save" : "Edit"}</button>
               <button className='button1' style={{ backgroundColor: "red",marginTop:"0.5em" }} onClick={()=>remove(index)}>Remove</button>
             </li>
           ))}

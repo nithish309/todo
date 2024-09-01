@@ -1,9 +1,9 @@
 
 button:hover{
-    cursor: pointer;
+    cursor:pointer;
 }
 input{
-    font-size: 1rem;
+    font-size: 16px;
     padding: 10px 20px;
     font-family: 'Times New Roman', Times, serif;
     border-radius: 0.5em;
@@ -21,10 +21,21 @@ input{
     margin-left: 0.5em;
   
 }
+input:valid{
+   outline-color: rgb(85, 247, 85);
+}
+input:invalid{
+    outline-color: red;
+}
 @media(max-width: 600px){
     .button1{
         padding: 5px 10px;
         margin-top: 0.5em;
         font-size: 12px;
+    }
+    input{
+        padding: 5px 10px;
+        font-size: 12px;
+
     }
 }
