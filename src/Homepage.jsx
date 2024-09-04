@@ -14,11 +14,14 @@ function TodoList() {
 
   const handleClick = (e) => {
     e.preventDefault();
-    if(editValue==false){
+    if(editValue==false && inputValue!=' '){
       setArr([...arr, inputValue]);
       setInputValue('');
       setDisplay(true);
-    }else{
+    }else if(inputValue==' '){
+        alert('enter a value')
+    }
+    else{
       alert('press save button and then add')
     }
   };
