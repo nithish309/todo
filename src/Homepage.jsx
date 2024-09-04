@@ -19,14 +19,19 @@ function TodoList() {
       setInputValue('');
       setDisplay(true);
     }else{
-      alert('press save button')
+      alert('press save button and then add')
     }
   };
 
   const remove = (index) => {
+    if(editValue==false){
       setArr(prevArr => [
         ...prevArr.slice(0, index),...prevArr.slice(index+1)  
       ]);
+    }
+      else{
+        alert('press save button and then remove')
+      }
   };
   
 
@@ -60,7 +65,7 @@ function TodoList() {
             <li key={index}>
               {item}
               <button className='button1'style={{ backgroundColor: "green" ,marginTop:"0.5em"}} onClick={() => edit(index)}>{editValue && index === editIndex ? "Save" : "Edit"}</button>
-              <button className='button1' style={{ backgroundColor: "red",marginTop:"0.5em" }} onClick={()=>remove(index)}>Remove</button>
+              <button className='button1' style={{ backgroundColor: "red",marginTop:"0.5em",cursor:editValue? 'not-allowed':'pointer' }} onClick={()=>remove(index)}>Remove</button>
             </li>
           ))}
         </ul>
